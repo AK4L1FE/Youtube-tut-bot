@@ -1,29 +1,29 @@
 const Discord = require('discord.js');
 const superagent = require("superagent");
 const Client = new Discord.Client();
-const OwnerID = "130515926117253122";
+const OwnerID = "309081957604786176";
 
-const prefix = "!"
+const prefix = "+"
 
 
 
 Client.on("ready", () => {
 	console.log("online");
-	Client.user.setPresence({ game: { name: `Hello world`, type: 0} });
+	Client.user.setPresence({ stream: { name: `+help`, type: 0} });
 });
 
 // welcome message
 
-Client.on("guildMemberAdd", member => {
-	   const welcomeChannel = member.guild.channels.find('name', 'welcome');
-                if (!welcomeChannel === null) return;
-   client.channels.get(welcomeChannel.id).send("Welcome to: " + member.guild.name + " Hope you enjoy it here")
+bot.on(`guildMemberAdd`, async member => {
+  console.log(`${member.id} has joined the server!`);
+  let welcomechannel = member.guild.channels.find(`name`, "welcome_leave");
+  welcomechannel.send(`Wow, ${member} has joined the server!!! `);
 });
 
-Client.on("guildMemberRemove", member => {
-   const welcomeChannel = member.guild.channels.find('name', 'welcome');
-                if (!welcomeChannel === null) return;
-   client.channels.get(welcomeChannel.id).send("Goodbye: " + member.user.username + " from " + member.guild.name)
+bot.on(`guildMemberRemove`, async member => {
+  console.log(`${member.id} has left the server!`);
+  let welcomechannel = member.guild.channels.find(`name`, "welcome_leave");
+  welcomechannel.send(`Sad story, ${member} has left the server.`);
 });
 
 Client.on("guildCreate", guild => {
@@ -81,11 +81,11 @@ Client.on("message", async (message) => {
 		const embed = new Discord.RichEmbed()
 		.setColor(0x954D23)
 		.setTitle("Command List:")
-		.addField("!help", "Will give the current command list")
-		.addField("!ping", "WIll show the ping time for the bot")
-		.addField("!say [text]", "Will make the bot say something")
-		.addField("!announcement [text]", "Will make the bot say an announcement and tag everyone")
-		.addField("!cat", "Will send a random cat image");
+		.addField("+help", "Will give the current command list")
+		.addField("+ping", "WIll show the ping time for the bot")
+		.addField("+say [text]", "Will make the bot say something")
+		.addField("+announcement [text]", "Will make the bot say an announcement and tag everyone")
+		.addField("+cat", "Will send a random cat image");
 		message.channel.send({embed})
 	}
 
